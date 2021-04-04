@@ -32,4 +32,4 @@ COPY . .
 RUN apt install python3-pip -y \
     && pip3 install -r requirements.txt
 EXPOSE 8000
-CMD [ "python3", "app.py" ]
+CMD [ "gunicorn", "--workers=9", "--bind=0.0.0.0:8000", "app:app" ]
